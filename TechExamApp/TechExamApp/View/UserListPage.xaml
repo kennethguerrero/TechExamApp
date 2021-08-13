@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TechExamApp.View.UserListPage"
+             xmlns:model="clr-namespace:TechExamApp.Model"
+             Padding="0,20,0,0">
+
+
+    <ListView IsPullToRefreshEnabled="True" 
+              HasUnevenRows="True"
+              SeparatorVisibility="None"
+              ItemsSource="{Binding Users}"
+              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+              RefreshCommand="{Binding LoadUsersCommand}"
+              SelectedItem="{Binding SelectedUser, Mode=TwoWay}">
+
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:UserModel">
+
+                <ViewCell>
+                    <Grid Padding="10">
+                        <Frame CornerRadius="15"
+                                   HasShadow="True"
+                                   BorderColor="#AEAEB2"
+                                   BackgroundColor="#f2f2f7">
+                            
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding ImageUrl}" 
+                                           WidthRequest="120"/>
+                                <Label Text="{Binding Name}" 
+                                           FontAttributes="Bold"/>
+                            </StackLayout>
+                            
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+    </ListView>
+
+</ContentPage>
